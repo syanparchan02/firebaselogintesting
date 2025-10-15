@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "140297794865",
+    "project_id": "cooking-7c16d",
+    "storage_bucket": "cooking-7c16d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140297794865:android:e0bece08a33276a780ac10",
+        "android_client_info": {
+          "package_name": "com.cookingtest.cooking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoO7Cc4SUTK5YQgwNjeYPACwJ6OIKLin8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140297794865:android:ad83d433ac3a94bb80ac10",
+        "android_client_info": {
+          "package_name": "com.cookingtest.package.name"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoO7Cc4SUTK5YQgwNjeYPACwJ6OIKLin8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
