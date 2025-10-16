@@ -1,3 +1,4 @@
+import 'package:cooking/screen/add_cooking_menu.dart';
 import 'package:cooking/screen/signupscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -63,6 +64,15 @@ class Body extends StatelessWidget {
           child: Text('login'),
         ),
         SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddCookingMenu()),
+            );
+          },
+          child: Text('Add chicken'),
+        ),
         ElevatedButton(
           onPressed: () {
             FirebaseAuth.instance.signOut();
