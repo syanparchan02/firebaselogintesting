@@ -65,6 +65,12 @@ class AddCookingMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    db.collection("fried_chicken").get().then((QuerySnapshot querySnapshot) {
+      print('Successfully completed');
+      for (var doc in querySnapshot.docs) {
+        print('${doc.id} => ${doc.data()}');
+      }
+    });
     return Scaffold(
       appBar: AppBar(title: Text('Add Cooking Menu')),
       body: Padding(
