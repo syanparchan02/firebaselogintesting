@@ -1,56 +1,5 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter/material.dart';
-
-// class AddCookingMenu extends StatelessWidget {
-//   AddCookingMenu({super.key});
-//   final chickcontroller = TextEditingController();
-//   final flavorController = TextEditingController();
-//   final oilController = TextEditingController();
-//   final saltController = TextEditingController();
-//   final db = FirebaseFirestore.instance;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Padding(
-//         padding: EdgeInsetsGeometry.only(top: 30),
-//         child: Column(
-//           children: [
-//             TextField(controller: chickcontroller),
-//             TextField(controller: flavorController),
-//             TextField(controller: oilController),
-//             TextField(controller: saltController),
-//             ElevatedButton(
-//               onPressed: () {
-//                 // Create a new user with a first and last name
-//                 final friedChicken = <String, dynamic>{
-//                   "chicken": int.parse(chickcontroller.text),
-//                   "oil": int.parse(oilController.text),
-//                   "salt": int.parse(saltController.text),
-//                   "flavor": flavorController.text,
-//                 };
-
-//                 // Add a new document with a generated ID
-//                 db
-//                     .collection("fried_chicken")
-//                     .add(friedChicken)
-//                     .then(
-//                       (DocumentReference doc) =>
-//                           print('DocumentSnapshot added with ID: ${doc.id}'),
-//                     )
-//                     .catchError((onError) {
-//                       print(onError);
-//                     });
-//               },
-//               child: Text('Insert to fried'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cooking/screen/models/fried_chicken.dart';
 import 'package:flutter/material.dart';
 
 class AddCookingMenu extends StatelessWidget {
@@ -62,7 +11,6 @@ class AddCookingMenu extends StatelessWidget {
   final db = FirebaseFirestore.instance;
 
   void _addFriedChicken(BuildContext context) async {
-    // Validate that all fields are filled
     if (chickController.text.isEmpty ||
         flavorController.text.isEmpty ||
         oilController.text.isEmpty ||
@@ -72,26 +20,29 @@ class AddCookingMenu extends StatelessWidget {
     }
 
     try {
-      // Create a new user with a first and last name
-      final friedChicken = <String, dynamic>{
-        "chicken": int.parse(chickController.text),
-        "oil": int.parse(oilController.text),
-        "salt": int.parse(saltController.text),
-        "flavor": flavorController.text,
-        "timestamp": FieldValue.serverTimestamp(), // Add timestamp for ordering
-      };
+      // final friedChicken = <String, dynamic>{
+      //   "chicken": int.parse(chickController.text),
+      //   "oil": int.parse(oilController.text),
+      //   "salt": int.parse(saltController.text),
+      //   "flavor": flavorController.text,
+      //   "timestamp": FieldValue.serverTimestamp(),
+      // };
 
-      // Add a new document with a generated ID
       DocumentReference doc = await db
           .collection("fried_chicken")
-          .add(friedChicken);
+          .add(
+            FriedChicken(
+              chicken: int.parse(chickController.text),
+              flavor: flavorController.text,
+              oil: int.parse(oilController.text),
+              salt: int.parse(saltController.text),
+            ).toFirebaseMap(),
+          );
 
       print('DocumentSnapshot added with ID: ${doc.id}');
 
-      // Show success message
       _showSnackBar(context, 'Data added successfully!');
 
-      // Clear form
       _clearForm();
     } catch (e) {
       print('Error adding document: $e');
@@ -165,6 +116,3 @@ class AddCookingMenu extends StatelessWidget {
     );
   }
 }
-
-
-//android/app/src/main/kotlin/com/yourcompany/yourapp/MainActivity.kt
