@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+}
+
+
+
+
 plugins {
     id("com.android.application")
     // START: FlutterFire Configuration
@@ -16,6 +27,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -44,4 +56,15 @@ android {
 
 flutter {
     source = "../.."
+}
+dependencies {
+    // Your usual dependencies
+    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
+
+    // ✅ Add desugar JDK libs to coreLibraryDesugaring
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+
+    // Other dependencies
+    implementation("com.google.android.material:material:1.9.0")
 }
